@@ -3,9 +3,9 @@
 ///1.Сделать два инпута: в один вводить параметр(число), во втором показывать объем шара при заданном параметре.
 
 const input = document.getElementById("sphereRadius");
+const sphere = document.getElementById("sphereCapacity");
 input.onchange = (event) => {
-  const sphere = document.getElementById("sphereCapacity");
-  sphere.value = (4 / 3) * 3.1415 * Math.pow(input.value, 3);
+    sphere.value = (4 / 3) * 3.1415 * Math.pow(input.value, 3);
 };
 
 /* 
@@ -87,9 +87,9 @@ function createListItem({ value, children, onClick = () => {} }) {
   );
   return li;
 }
-
+const ulList = document.getElementById("taskThreeUl");
 arr.map((item) => {
-  document.getElementById("taskThreeUl").append(
+  ulList.append(
     createListItem({
       value: item,
       children: createButton({
@@ -114,24 +114,28 @@ elem.html('hello').append('!').prepend('!').attr('class', 'www').attr('title', '
 class Elem {
   constructor(selector) {
     this._selector = selector;
+    this._element = document.querySelector(selector);
   }
-  get selector() {
+  get selector(){
     return this._selector;
   }
+  get element(){
+    return this._element;
+  }
   html(value) {
-    document.querySelector(this.selector).textContent += value;
+    this.element.textContent += value;
     return this;
   }
   append(value) {
-    document.querySelector(this.selector).prepend(value);
+    this.element.prepend(value);
     return this;
   }
   prepend(value) {
-    document.querySelector(this.selector).append(value);
+    this.element.append(value);
     return this;
   }
   attr(attribute, value) {
-    document.querySelector(this.selector).setAttribute(attribute, value);
+    this.element.setAttribute(attribute, value);
     return this;
   }
 }
